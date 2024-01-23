@@ -15,11 +15,12 @@ class UsersController < ApplicationController
   end
 
   def edit
+   @user = current_user
   end
 
   def update
     if @user.update(user_params)
-      redirect_to users_path(@user), notice: "You have updated user successfully."
+      redirect_to user_path(@user), notice: "You have updated user successfully."
     else
       render "show"
     end
