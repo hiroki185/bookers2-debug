@@ -22,6 +22,7 @@ class UsersController < ApplicationController
     if @user.update(user_params)
       redirect_to user_path(@user), notice: "You have updated user successfully."
     else
+      @books = Book.all
       render "show"
     end
   end
