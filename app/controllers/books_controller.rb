@@ -35,7 +35,6 @@ before_action :is_matching_login_user, only: [:edit, :update]
     if @book.update(book_params)
       redirect_to book_path(@book), notice: "You have updated book successfully."
     else
-      @user = current_user
       render :edit
     end
   end
