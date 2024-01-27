@@ -3,9 +3,12 @@ Rails.application.routes.draw do
   devise_for :users
   root :to =>"homes#top"
   get "home/about"=>"homes#about"
-
-  resources :books, only: [:index,:show,:edit,:create,:destroy,:update]
+  resources :books, only: [:index,:show,:edit,:create,:destroy,:update] do
+    resource :favorite, only: [:create, :destroy]
+  end
+    
   resources :users, only: [:index,:show,:edit,:update,]
+  
 
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
   #bookers2-debug
@@ -42,3 +45,5 @@ end
                                     #user GET    /users/:id(.:format)                                                                              users#show
                                          #PATCH  /users/:id(.:format)                                                                              users#update
                                          #PUT    /users/:id(.:format)                                                                              users#update
+                           #book_favorite DELETE /books/:book_id/favorite(.:format)                                                                favorites#destroy
+                                         #POST   /books/:book_id/favorite(.:format)                                                                favorites#create
