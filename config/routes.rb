@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   root :to =>"homes#top"
   get "home/about"=>"homes#about"
   resources :books, only: [:index,:show,:edit,:create,:destroy,:update] do
+    resources :book_comments, only: [:create, :destroy]
     resource :favorite, only: [:create, :destroy]
   end
     
@@ -47,3 +48,4 @@ end
                                          #PUT    /users/:id(.:format)                                                                              users#update
                            #book_favorite DELETE /books/:book_id/favorite(.:format)                                                                favorites#destroy
                                          #POST   /books/:book_id/favorite(.:format)                                                                favorites#create
+                      #book_book_comments POST   /books/:book_id/book_comments(.:format)                                                           book_comments#create
