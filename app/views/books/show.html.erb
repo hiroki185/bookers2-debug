@@ -26,13 +26,13 @@
         <% if @book1.favorited_by?(current_user) %>
           <p>
             <%= link_to book_favorite_path(@book1), method: :delete do %>
-             ♥<%= @book1.favorites.count %> いいね
+             ♥<%= @book1.favorites.count %>
              <% end %>
           </p>
            <% else %>
            <p>
             <%= link_to book_favorite_path(@book1), method: :post do %>
-             ♡<%= @book1.favorites.count %> いいね
+             ♡<%= @book1.favorites.count %>
              <% end %>
            </p>
           <% end %>
@@ -55,13 +55,13 @@
         <% if @book1.favorited_by?(current_user) %>
           <p>
             <%= link_to book_favorite_path(@book1), method: :delete do %>
-             ♥<%= @book1.favorites.count %> いいね
+             ♥<%= @book1.favorites.count %>
              <% end %>
           </p>
            <% else %>
            <p>
             <%= link_to book_favorite_path(@book1), method: :post do %>
-             ♡<%= @book1.favorites.count %> いいね
+             ♡<%= @book1.favorites.count %>
              <% end %>
            </p>
           <% end %>
