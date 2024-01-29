@@ -3,13 +3,13 @@ class FavoritesController < ApplicationController
     post_image = Book.find(params[:book_id])
     favorite = current_user.favorites.new(book_id: post_image.id)
     favorite.save
-    redirect_to book_path(post_image)
+    redirect_back(fallback_location: root_path)
   end
 
   def destroy
     post_image = Book.find(params[:book_id])
     favorite = current_user.favorites.find_by(book_id: post_image.id)
     favorite.destroy
-    redirect_to book_path(post_image)
+    redirect_back(fallback_location: root_path)
   end
 end
