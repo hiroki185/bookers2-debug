@@ -1,12 +1,6 @@
 class RelationshipsController < ApplicationController
   
-  def show
-    
-  end
-  
-  def index
-    
-  end
+
 
   # フォローするとき
   def create
