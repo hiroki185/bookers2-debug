@@ -23,7 +23,8 @@ Rails.application.routes.draw do
   #bundle exec rspec spec/ --format documentation
   #rails routes
 end
-
+                         #user_followings GET    /users/:user_id/followings(.:format)                                                              relationships#followings
+                          #user_followers GET    /users/:user_id/followers(.:format)                                                               relationships#followers
                         #new_user_session GET    /users/sign_in(.:format)                                                                          devise/sessions#new
                             #user_session POST   /users/sign_in(.:format)                                                                          devise/sessions#create
                     #destroy_user_session DELETE /users/sign_out(.:format)                                                                         devise/sessions#destroy
