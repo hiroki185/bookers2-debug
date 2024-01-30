@@ -2,7 +2,7 @@
   <div class='row'>
     <div class='col-md-3'>
       <h2>User info</h2>
-      <%= render 'users/info' %>
+      <%= render 'users/info', user: @user %>
       <h2 class="mt-3">New book</h2>
       <%= render 'form', book: @book %>
     </div>
@@ -48,8 +48,6 @@
       </td>
       <td><%= link_to @book1.title, book_path(@book1.id) %></td>
       <td><%= @book1.body %></td>
-
-
 
         <td>
         <% if @book1.favorited_by?(current_user) %>

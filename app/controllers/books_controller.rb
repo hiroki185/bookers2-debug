@@ -7,6 +7,7 @@ before_action :is_matching_login_user, only: [:edit, :update]
     @book = Book.new
     @book_comment = BookComment.new
     @books = Book.all
+    @users = User.all
   end
 
   def index
