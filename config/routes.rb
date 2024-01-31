@@ -1,6 +1,4 @@
 Rails.application.routes.draw do
-  get 'relationships/index'
-  get 'relationships/show'
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   devise_for :users
   root :to =>"homes#top"
@@ -10,6 +8,7 @@ Rails.application.routes.draw do
     resource :favorite, only: [:create, :destroy]
   end
 
+  get "search" => "searches#search"
 
   resources :users, only: [:index,:show,:edit,:update,] do
     resource :relationships, only: [:create, :destroy]
@@ -23,6 +22,7 @@ Rails.application.routes.draw do
   #bundle exec rspec spec/ --format documentation
   #rails routes
 end
+                                  #search GET    /search(.:format)                                                                                 searches#search
                          #user_followings GET    /users/:user_id/followings(.:format)                                                              relationships#followings
                           #user_followers GET    /users/:user_id/followers(.:format)                                                               relationships#followers
                         #new_user_session GET    /users/sign_in(.:format)                                                                          devise/sessions#new
