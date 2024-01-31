@@ -12,4 +12,4 @@ class SearchesController < ApplicationController
   end
 end
 
-_btn.html.erb
+
