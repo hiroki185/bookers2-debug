@@ -1,95 +1,37 @@
-<div class='container'>
-  <div class='row'>
-    <div class='col-md-3'>
-      <h2>User info</h2>
-      <%= render 'users/info', user: @user %>
-      <h2 class="mt-3">New book</h2>
-      <%= render 'form', book: @book %>
-    </div>
-    <div class='col-md-8 offset-md-1'>
-  		<h2>Book detail</h2>
-  		<table class='table'>
-  		  <% if @user.id == current_user.id %>
-  		  <tr>
-          <td><%= link_to(@book1.user) do %>
-            <%= image_tag @book1.user.get_profile_image, size:"100x100" %><br>
-            <%= @book1.user.name %>
-            <% end %>
-          </td>
-          <td><%= link_to @book1.title, @book1 %></td>
-          <td><%= @book1.body %></td>
-            <td><%= link_to 'Edit', edit_book_path(@book1), class: "btn btn-sm btn-success" %></td>
-            <td><%= link_to 'Destroy', @book1, method: :delete, data: { confirm: '本当に消しますか？' }, class: "btn btn-sm btn-danger"%></td>
-
-
-        <td>
-        <% if @book1.favorited_by?(current_user) %>
-          <p>
-            <%= link_to book_favorite_path(@book1), method: :delete do %>
-             ♥<%= @book1.favorites.count %>
-             <% end %>
-          </p>
-           <% else %>
-           <p>
-            <%= link_to book_favorite_path(@book1), method: :post do %>
-             ♡<%= @book1.favorites.count %>
-             <% end %>
-           </p>
-          <% end %>
-        </td>
-         <td><%= "コメント数: #{@book1.book_comments.count} " %></td>
-        </tr>
-        <% else %>
-
-      <tr>
-      <td>
-        <%= image_tag @book1.user.get_profile_image, size:"100x100" %><br>
-        <%= link_to @user.name, user_path(@user.id) %>
-      </td>
-      <td><%= link_to @book1.title, book_path(@book1.id) %></td>
-      <td><%= @book1.body %></td>
-
-        <td>
-        <% if @book1.favorited_by?(current_user) %>
-          <p>
-            <%= link_to book_favorite_path(@book1), method: :delete do %>
-             ♥<%= @book1.favorites.count %>
-             <% end %>
-          </p>
-           <% else %>
-           <p>
-            <%= link_to book_favorite_path(@book1), method: :post do %>
-             ♡<%= @book1.favorites.count %>
-             <% end %>
-           </p>
-          <% end %>
-        </td>
-        <td><%= "コメント数: #{@book1.book_comments.count} " %></td>
-    </tr>
-
-    <% end %>
-    </table>
-
-    <div>
-  <% @book1.book_comments.each do |book_comment| %>
-  <p><%= image_tag book_comment.user.get_profile_image, size:"60x60" %>
-  　　<%= book_comment.comment %>
-     <% if book_comment.user == current_user %>
-      <%= link_to "削除", book_book_comment_path(book_comment.book, book_comment), method: :delete %>
-    <% end %>
-  </p>
-    <%= book_comment.user.name %>
-   <% end %>
-
-</div>
-<div>
-  <%= form_with model: [@book1, @book_comment] do |f| %>
-    <%= f.text_area :comment, rows: '5', class: "form-control"%>
-    <%= f.submit "送信する" %>
-  <% end %>
-</div>
-
-
-    </div>
-  </div>
-</div>
+ <div class="container">
+   <div class="row">
+     <div class="col-md-3">
+       <h2>User info</h2>
+       <%= render "users/info", user: @user %>
+       <h2 class="mt-3">New book</h2>
+       <%= render "form", book: @books %>
+     </div>
+     <div class='col-md-8 offset-md-1'>
+       <h2>Book detail</h2>
+       <table class="table">
+         <tr>
+           <td><%= link_to @book1.user do %>
+               <%= image_tag @book1.user.get_profile_image, size:"50x50" %><br>
+               <%= @book1.user.name %>
+               <% end %>
+           </td>
+           <td><%= link_to @book1.title, @book1 %></td>
+           <td><%= @book1.body %></td>
+           <td id="favorite_btn_<%= @book1.id %>">
+             <%= render "favorites/btn", book: @book1 %>
+           </td>
+           <td>コメント数： <%= @book1.book_comments.count %></td>
+           
+           <% if @book1.user == current_user %>
+           <td><%= link_to "Edit", edit_book_path(@book1), class: "btn btn-sm btn-success" %></td>
+           <td><%= link_to "Destroy", @book1, method: :delete, data: { confirm: "本当に消しますか？" }, class: "btn btn-sm btn-danger" %></td>
+           <% end %>
+         </tr>
+       </table>
+       
+       <%= render "book_comments/index", book: @book1 %>
+       <%= render "book_comments/form", book: @book1, book_comment: @book_comment %>
+       
+     </div>
+   </div>
+ </div>
