@@ -7,6 +7,7 @@ before_action :is_matching_login_user, only: [:edit, :update]
     @book_comment = BookComment.new
     @books = Book.all
     @newbook = Book.new
+    @book.increment!(:view_count)
   end
 
   def index
