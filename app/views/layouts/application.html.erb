@@ -14,8 +14,17 @@
       <main>
         <p id="notice"><%= notice %></p>
       </main>
-    <%= render 'searches/serach' %>
+      
+      <div class="row">
+      <div class="col"><%= render 'searches/serach' %></div>
+       <% if user_signed_in? %>
+　　    <div class="col"><%= render 'tagsearches/tagsearch' %></div>
+       <% end %>
+      </div>
+      
     <%= yield %>
     <%= render 'layouts/footer' %>
   </body>
 </html>
+
+

@@ -26,7 +26,6 @@ class Book < ApplicationRecord
   scope :old, -> {order(created_at: :asc)}
   scope :star_count, -> {order(star: :desc)}
 
-
   def favorited_by?(user)
     favorites.exists?(user_id: user.id)
   end
